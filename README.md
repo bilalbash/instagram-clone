@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+open this application with this url:
+rails s -b 'ssl://localhost:3000?key=./localhost.key&cert=./localhost.crt'
+
