@@ -20,4 +20,8 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def self.hello
+    puts 'hello'
+  end
 end
