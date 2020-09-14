@@ -25,3 +25,6 @@
 localhost.key
 localhost.crt
 db/schema.rb
+
+# Ignore application configuration
+/config/application.yml

@@ -60,3 +60,7 @@ gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'omniauth', '~> 1.6'
 gem 'omniauth-facebook'
+gem 'carrierwave', '~> 1.0'
+gem 'cloudinary'
+gem 'figaro'
+
