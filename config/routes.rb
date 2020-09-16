@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :show, :create, :destroy] do
     resources :photo, only: [:create]
+    resources :likes, only: [:create, :destroy], shallow: true
   end
 end
