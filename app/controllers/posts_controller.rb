@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :destroy]
 
   def index
-    @posts = Post.all.limit(10).includes(:photos, :user, :likes).
-    order('created_at desc')
+    @posts = Post.paginate(:page => params[:page], :per_page => 5).includes(:photos, :user, :likes).
+      order("created_at desc")
     @post = Post.new
   end
 
@@ -30,21 +30,21 @@ class PostsController < ApplicationController
     @likes = @post.likes.includes(:user)
     @comment = Comment.new
     @is_liked = @post.is_liked(current_user)
+    @is_bookmarked = @post.is_bookmarked(current_user)
+    set_meta_tags title: "Photo by "+@post.user.name
   end
 
   def destroy
-    def destroy
-      if @post.user == current_user
-        if @post.destroy
-          flash[:notice] = "Post deleted!"
-        else
-          flash[:alert] = "Something went wrong ..."
-        end
+    if @post.user == current_user
+      if @post.destroy
+        flash[:notice] = "Post deleted!"
       else
-        flash[:notice] = "You don't have permission to do that!"
+        flash[:alert] = "Something went wrong ..."
       end
-      redirect_to root_path
+    else
+      flash[:notice] = "You don't have permission to do that!"
     end
+    redirect_to root_path
   end
 
   private
@@ -53,11 +53,11 @@ class PostsController < ApplicationController
     @post = Post.find_by id: params[:id]
 
     return if @post
-    flash[:danger] = "Post doesn't exist!"
+    flash[:danger] = "Post not exist!"
     redirect_to root_path
   end
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit :content
   end
 end
