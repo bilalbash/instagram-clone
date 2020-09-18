@@ -29,3 +29,6 @@ db/schema.rb
 # Ignore application configuration
 /config/application.yml
 /public/uploads
+/public/assets
+
+yarn.lock

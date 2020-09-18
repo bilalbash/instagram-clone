@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # /users/3 -> Users controller, show action, params {id: '3'}
   resources :users, only: [:index, :show]
 
+  get '/privacy', to: 'pages#privacy'
+
   resources :posts, only: [:index, :show, :create, :destroy] do
     resources :photos, only: [:create]
     resources :likes, only: [:create, :destroy], shallow: true

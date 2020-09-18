@@ -66,4 +66,3 @@ gem 'cloudinary'
 gem 'figaro'
 gem 'dropzonejs-rails'
 gem 'will_paginate-bootstrap4'
-
